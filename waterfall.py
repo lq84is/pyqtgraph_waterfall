@@ -48,7 +48,6 @@ class WaterfallWidget(pg.PlotWidget):
         self.current_col = (self.current_col + 1) % (self.buffer_size // 2)
         self.update_visible_image()
     def clear_waterfall(self):
-        """Функция для очистки всех данных водопада."""
         self.buffers = self._create_buffers()
         self.current_col = 0
         self.current_buffer = 1
