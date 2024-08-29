@@ -35,8 +35,8 @@ class WaterfallWidget(pg.PlotWidget):
     def update_buffer(self, level, new_data):
         buffer = self.buffers[level]
         sampleSize = buffer.shape[1]
-        buffer[:, self.current_col // level] = new_data
-        buffer[:, (self.current_col // level + sampleSize // 2) % sampleSize] = new_data
+        buffer[:, self.current_col // level] = new_data                                   # memory leaking at these lines
+        buffer[:, (self.current_col // level + sampleSize // 2) % sampleSize] = new_data  # memory leaking at these lines
     def update_waterfall(self, new_data, clear_prev = False):
         if (new_data.shape[0] != self.sampleSize) or (clear_prev == True):
             self.sampleSize = new_data.shape[0]
